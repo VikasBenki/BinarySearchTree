@@ -8,11 +8,12 @@ namespace BinarySearchTreeProb
 {
     public class MyBinaryTree<T> where T : IComparable
     {
+        //Variable.
         public INode<T> root;
         /// <summary>
-        /// Creates the node.
+        /// insert the node into bst.
         /// </summary>
-        /// <param name="value">The value.</param>
+        /// <param name="value"></param>
         public void CreateNode(T value)
         {
             INode<T> newNode = new INode<T>(value);
@@ -22,39 +23,65 @@ namespace BinarySearchTreeProb
             }
             else
             {
-                INode<T> parent = root;
-                INode<T> current = root;
-                if (current.data.CompareTo(value) >= 0)
+                INode<T> parentNode = root;
+                INode<T> currentNode = root;
+                while (true)
                 {
-                    parent.leftTree = newNode;
-                    return;
-                }
-                else
-                {
-                    parent.rightTree = newNode;
-                    return;
+                    parentNode = currentNode;
+                    if (currentNode.data.CompareTo(value) >= 0)
+                    {
+                        currentNode = currentNode.left;
+                        if (currentNode == null)
+                        {
+                            parentNode.left = newNode;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        currentNode = currentNode.right;
+                        if (currentNode == null)
+                        {
+                            parentNode.right = newNode;
+                            break;
+                        }
+                    }
                 }
             }
+        }
+        //Display Root Node.
+        public void Root()
+        {
+            do
+            {
+                Console.WriteLine("BST Root Node:" + root.data);
+                break;
+            } while (root != null);
         }
         /// <summary>
         /// Displays Nodes in BST
         /// </summary>
-        public void Display()
+        public void Display(INode<T> parent)
         {
-            INode<T> temp = root;
-            if (temp != null)
+            if (parent != null)
             {
-                Console.WriteLine("Root Node:{0}", temp.data.ToString());
-            }
-            if (temp.leftTree != null)
-            {
-                Console.WriteLine("Left Node:{0}", temp.leftTree.data.ToString());
-            }
-            if (temp.rightTree != null)
-            {
-                Console.WriteLine("Right Node:{0}", temp.rightTree.data.ToString());
+                Display(parent.left);
+                Display(parent.right);
+                Console.WriteLine("{0} is BST Node", parent.data);
             }
         }
-    }  
-    
+        /// <summary>
+        /// length of bst
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public int Size(INode<T> root)
+        {
+            if (root == null)
+                return 0;
+            else
+                return (Size(root.left) + 1 + Size(root.right));
+        }
+
+    }
 }

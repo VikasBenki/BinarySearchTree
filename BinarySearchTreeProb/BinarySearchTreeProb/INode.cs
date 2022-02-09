@@ -10,17 +10,17 @@ namespace BinarySearchTreeProb
     {
         //Variables
         public T data;
-        public INode<T> leftTree;
-        public INode<T> rightTree;
+        public INode<T> left;
+        public INode<T> right;
         /// <summary>
-        /// Initializes a new instance of the <see cref="INode{T}"/> class.
+        /// initialization of the nodes.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="data"></param>
         public INode(T data)
         {
             this.data = data;
-            leftTree = null;
-            rightTree = null;
+            this.left = null;
+            this.right = null;
         }
     }
 }
