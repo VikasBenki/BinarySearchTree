@@ -36,7 +36,18 @@ namespace BinarySearchTreeProb
             mybinarynode.Root();
             mybinarynode.Display(mybinarynode.root);
             Console.WriteLine("The number of nodes in BST:{0}", mybinarynode.Size(mybinarynode.root));
+            bool found = mybinarynode.Search(mybinarynode.root, 63);
+            if (found == true)
+            {
+                Console.WriteLine("Key found");
+                Console.WriteLine("the binaary Node 63  is found");
+            }
+            else
+            {
+                Console.WriteLine("Key not found");
+            }
         }
     }
+    
                 
 }
